@@ -1,13 +1,9 @@
 vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
 
 vim.cmd("set expandtab")
 vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
-
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -26,21 +22,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local plugins = {
--- Lazy.nvim:
-    require('lazy').setup({
-        {
-            "Mofiqul/adwaita.nvim",
-            lazy = false,
-            priority = 1000,
-            config = function()
-                vim.g.adwaita_darker = true
-                vim.g.adwaita_transparent = true
-                vim.cmd('colorscheme adwaita')
-            end
-        },
-    })
-}
 local opts = {}
 
-require("lazy").setup(plugins, opts)
+require("lazy").setup("plugins")
+
+
+
