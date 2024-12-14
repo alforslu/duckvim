@@ -13,9 +13,9 @@ return {
                     LineNrAbove = { fg = "#4f535a" },
                     LineNrBelow = { fg = "#4f535a" },
                 },
-            }
+            },
         })
 
         vim.cmd("colorscheme cyberdream")
-    end
+    end,
 }

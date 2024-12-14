@@ -7,8 +7,8 @@ vim.g.have_nerd_font = true
 vim.keymap.set({ "n", "i", "v" }, "<C-c>", "<Esc>", { noremap = true, silent = true })
 
 -- Indentation
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=4")
+vim.cmd("set expandtab") -- Tabs are now spaces
+vim.cmd("set tabstop=4") -- 4 spaces / tab (can change due to plugin)
 vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
 
@@ -16,7 +16,7 @@ vim.cmd("set shiftwidth=4")
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = false -- Might automate this later idk
-vim.opt.scrolloff = 10     -- Amount of lines minimum at bottom or top
+vim.opt.scrolloff = 10 -- Amount of lines minimum at bottom or top
 
 -- Hide duplicate mode text
 vim.opt.showmode = false
@@ -25,9 +25,9 @@ vim.opt.showmode = false
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- Sync clipboard between OS and nvim aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+-- Sync clipboard between OS and nvim
 vim.schedule(function()
-  vim.opt.clipboard = "unnamedplus"
+    vim.opt.clipboard = "unnamedplus"
 end)
 
 -- Undo history
@@ -55,7 +55,8 @@ vim.opt.splitbelow = true
 
 -- Whitespace settings
 vim.opt.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+-- vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.listchars = { tab = "  ", trail = "·", nbsp = "␣" }
 
 -- Live changes in replace and such
 vim.opt.inccommand = "split"
@@ -64,29 +65,25 @@ vim.opt.inccommand = "split"
 -- local _border = "rounded"
 vim.api.nvim_set_hl(0, "CustomFloatBorder", { fg = "#5ef1ff", bg = "NONE" })
 local _border = {
-  { "╭", "CustomFloatBorder" },
-  { "─", "CustomFloatBorder" },
-  { "╮", "CustomFloatBorder" },
-  { "│", "CustomFloatBorder" },
-  { "╯", "CustomFloatBorder" },
-  { "─", "CustomFloatBorder" },
-  { "╰", "CustomFloatBorder" },
-  { "│", "CustomFloatBorder" },
+    { "╭", "CustomFloatBorder" },
+    { "─", "CustomFloatBorder" },
+    { "╮", "CustomFloatBorder" },
+    { "│", "CustomFloatBorder" },
+    { "╯", "CustomFloatBorder" },
+    { "─", "CustomFloatBorder" },
+    { "╰", "CustomFloatBorder" },
+    { "│", "CustomFloatBorder" },
 }
 
 -- Apply custom borders to LSP hover
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  vim.lsp.handlers.hover, {
-    border = _border
-  }
-)
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = _border,
+})
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-  vim.lsp.handlers.signature_help, {
-    border = _border
-  }
-)
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+    border = _border,
+})
 
-vim.diagnostic.config {
-  float = { border = _border }
-}
+vim.diagnostic.config({
+    float = { border = _border },
+})

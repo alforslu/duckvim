@@ -9,7 +9,7 @@ return {
                 comment_line = "<leader>/",
                 comment_visual = "<leader>/",
                 textobject = "<leader>/",
-            }
+            },
         })
 
         -- Bracket movement (Buffer, diagnostic, comment etc..)
@@ -20,5 +20,5 @@ return {
 
         -- Paired brackets
         require("mini.pairs").setup()
-    end
+    end,
 }
