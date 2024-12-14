@@ -24,7 +24,7 @@ return {
             lspconfig.clangd.setup({})
 
             -- Keymaps
-            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {desc = '[g]oto [d]efinition' })
+            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {desc = '[g]oto [d]efinition'})
             vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {desc = '[g]oto [D]eclaration' })
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, {desc = 'Show information'})
             vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, {desc = '[r]e[n]ame variable'})
