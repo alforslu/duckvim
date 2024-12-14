@@ -31,7 +31,7 @@ return {
             vim.keymap.set('n', '<leader>fw', function()
                 -- You can pass additional configuration to Telescope to change the theme, layout, etc.
                 builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-                    winblend = 0,
+                    -- winblend = 100,
                     previewer = false,
                 })
             end, { desc = '[F]ind [W]ord fuzzily in current buffer' })

@@ -61,7 +61,20 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.inccommand = "split"
 
 -- lsp float borders
-local _border = "rounded"
+-- local _border = "rounded"
+vim.api.nvim_set_hl(0, "CustomFloatBorder", { fg = "#5ef1ff", bg = "NONE" })
+local _border = {
+  { "╭", "CustomFloatBorder" },
+  { "─", "CustomFloatBorder" },
+  { "╮", "CustomFloatBorder" },
+  { "│", "CustomFloatBorder" },
+  { "╯", "CustomFloatBorder" },
+  { "─", "CustomFloatBorder" },
+  { "╰", "CustomFloatBorder" },
+  { "│", "CustomFloatBorder" },
+}
+
+-- Apply custom borders to LSP hover
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
   vim.lsp.handlers.hover, {
     border = _border
