@@ -27,7 +27,7 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Sync clipboard between OS and nvim aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 vim.schedule(function()
-    vim.opt.clipboard = "unnamedplus"
+  vim.opt.clipboard = "unnamedplus"
 end)
 
 -- Undo history
@@ -87,6 +87,6 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
   }
 )
 
-vim.diagnostic.config{
-  float={border=_border}
+vim.diagnostic.config {
+  float = { border = _border }
 }

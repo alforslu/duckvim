@@ -10,7 +10,7 @@ return {
         config = function()
             require("mason-lspconfig").setup({
                 -- NOTE: Language servers
-                ensure_installed = { "lua_ls", "clangd" }
+                ensure_installed = { "lua_ls", "clangd", "rust_analyzer" }
             })
         end
     },
@@ -22,16 +22,12 @@ return {
             -- NOTE: Have to setup all lsps
             lspconfig.lua_ls.setup({})
             lspconfig.clangd.setup({})
+            lspconfig.rust_analyzer.setup({})
 
             -- We just want to do this if LSP is enabled for the file
             vim.api.nvim_create_autocmd('LspAttach', {
                 group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
                 callback = function(event)
-                    -- NOTE: Remember that Lua is a real programming language, and as such it is possible
-                    -- to define small helper and utility functions so you don't have to repeat yourself.
-                    --
-                    -- In this case, we create a function that lets us more easily define mappings specific
-                    -- for LSP related items. It sets the mode, buffer and description for us each time.
                     local map = function(keys, func, desc, mode)
                         mode = mode or 'n'
                         vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
@@ -55,11 +51,10 @@ return {
 
                     -- The following two autocommands are used to highlight references of the
                     -- word under your cursor when your cursor rests there for a little while.
-                    --    See `:help CursorHold` for information about when this is executed
-                    --
                     -- When you move your cursor, the highlights will be cleared (the second autocommand).
                     local client = vim.lsp.get_client_by_id(event.data.client_id)
                     if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+                        -- NOTE: Don't know if I like this, maybe remove?
                         local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight',
                             { clear = false })
                         vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
@@ -94,6 +89,18 @@ return {
                     end
                 end,
             })
+
+            local signs = { ERROR = '', WARN = '', INFO = '', HINT = '' }
+            local diagnostic_signs = {}
+
+            for type, icon in pairs(signs) do
+                diagnostic_signs[vim.diagnostic.severity[type]] = icon
+            end
+            vim.diagnostic.config { signs = { text = diagnostic_signs } }
+
+            -- TODO: Uncomment this when cmp is installed
+            -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+            -- capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
         end
     },
 }
