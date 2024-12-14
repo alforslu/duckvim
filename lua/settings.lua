@@ -25,7 +25,7 @@ vim.opt.showmode = false
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- Sync clipboard between OS and nvim
+-- Sync clipboard between OS and nvim aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 vim.schedule(function()
     vim.opt.clipboard = "unnamedplus"
 end)
@@ -59,3 +59,21 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Live changes in replace and such
 vim.opt.inccommand = "split"
+
+-- lsp float borders
+local _border = "rounded"
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover, {
+    border = _border
+  }
+)
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+  vim.lsp.handlers.signature_help, {
+    border = _border
+  }
+)
+
+vim.diagnostic.config{
+  float={border=_border}
+}
