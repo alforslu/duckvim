@@ -7,10 +7,25 @@ vim.g.have_nerd_font = true
 vim.keymap.set({ "n", "i", "v" }, "<C-c>", "<Esc>", { noremap = true, silent = true })
 
 -- Indentation
-vim.cmd("set expandtab") -- Tabs are now spaces
-vim.cmd("set tabstop=4") -- 4 spaces / tab (can change due to plugin)
-vim.cmd("set softtabstop=4")
-vim.cmd("set shiftwidth=4")
+vim.opt.expandtab = true -- Convert tabs to spaces
+-- vim.opt.tabstop = 4      -- Number of spaces for a tab
+-- vim.opt.softtabstop = 4  -- Number of spaces a <Tab> or <BS> counts for in insert mode
+-- vim.opt.shiftwidth = 4   -- Number of spaces for indentation
+
+vim.g.sleuth_default_width = 4
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    if vim.opt.shiftwidth:get() > 4 then
+      vim.opt.shiftwidth = 4
+    end
+    if vim.opt.tabstop:get() > 4 then
+      vim.opt.tabstop = 4
+    end
+    if vim.opt.softtabstop:get() > 4 then
+      vim.opt.softtabstop = 4
+    end
+  end,
+})
 
 -- Line numbers
 vim.opt.number = true

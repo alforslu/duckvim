@@ -1,6 +1,9 @@
 return {
     { -- Automatic intendation from current files
         "tpope/vim-sleuth",
+        config = function()
+            vim.g.sleuth_default_width = 4
+        end
     },
     { -- Adds git related signs to the gutter, as well as utilities for managing changes
         "lewis6991/gitsigns.nvim",
