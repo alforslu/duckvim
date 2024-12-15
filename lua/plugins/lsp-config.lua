@@ -18,11 +18,18 @@ return {
         "neovim/nvim-lspconfig",
         config = function()
             local lspconfig = require("lspconfig")
+            local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
             -- NOTE: Have to setup all lsps
-            lspconfig.lua_ls.setup({})
-            lspconfig.clangd.setup({})
-            lspconfig.rust_analyzer.setup({})
+            lspconfig.lua_ls.setup({
+                capabilities = capabilities,
+            })
+            lspconfig.clangd.setup({
+                capabilities = capabilities,
+            })
+            lspconfig.rust_analyzer.setup({
+                capabilities = capabilities,
+            })
 
             -- We just want to do this if LSP is enabled for the file
             vim.api.nvim_create_autocmd("LspAttach", {

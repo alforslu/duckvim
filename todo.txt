@@ -1,0 +1,5 @@
+TODO:
+Disable snippets in comments and filenames
+Resize snippet window
+Fix K border
+
