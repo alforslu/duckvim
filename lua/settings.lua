@@ -12,19 +12,20 @@ vim.opt.expandtab = true -- Convert tabs to spaces
 -- vim.opt.softtabstop = 4  -- Number of spaces a <Tab> or <BS> counts for in insert mode
 -- vim.opt.shiftwidth = 4   -- Number of spaces for indentation
 
+-- This is why above is commented out, automatically detect but never >4
 vim.g.sleuth_default_width = 4
 vim.api.nvim_create_autocmd("BufEnter", {
-  callback = function()
-    if vim.opt.shiftwidth:get() > 4 then
-      vim.opt.shiftwidth = 4
-    end
-    if vim.opt.tabstop:get() > 4 then
-      vim.opt.tabstop = 4
-    end
-    if vim.opt.softtabstop:get() > 4 then
-      vim.opt.softtabstop = 4
-    end
-  end,
+    callback = function()
+        if vim.opt.shiftwidth:get() > 4 then
+            vim.opt.shiftwidth = 4
+        end
+        if vim.opt.tabstop:get() > 4 then
+            vim.opt.tabstop = 4
+        end
+        if vim.opt.softtabstop:get() > 4 then
+            vim.opt.softtabstop = 4
+        end
+    end,
 })
 
 -- Line numbers
@@ -70,8 +71,8 @@ vim.opt.splitbelow = true
 
 -- Whitespace settings
 vim.opt.list = true
--- vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-vim.opt.listchars = { tab = "  ", trail = "·", nbsp = "␣" }
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+-- vim.opt.listchars = { tab = "  ", trail = "·", nbsp = "␣" }
 
 -- Live changes in replace and such
 vim.opt.inccommand = "split"
