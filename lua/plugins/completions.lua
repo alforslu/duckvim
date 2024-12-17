@@ -31,13 +31,13 @@ return {
             completion = {
                 menu = {
                     border = "rounded", -- Add rounded borders to the completion menu
-                    auto_show = true, -- Ensure the menu auto-shows
+                    auto_show = true,   -- Ensure the menu auto-shows
                 },
                 documentation = {
-                    auto_show = true, -- Automatically show documentation
+                    auto_show = true,       -- Automatically show documentation
                     window = {
                         border = "rounded", -- Add borders to the documentation window
-                        winblend = 0, -- Transparency of the window
+                        winblend = 0,       -- Transparency of the window
                         max_width = 60,
                         max_height = 20,
                         winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder",

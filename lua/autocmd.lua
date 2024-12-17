@@ -29,9 +29,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 --     end,
 -- })
 
--- Debug cmp
-vim.api.nvim_create_autocmd("CompleteChanged", {
-  callback = function()
-    require("blink.cmp").show_documentation()
-  end,
-})
