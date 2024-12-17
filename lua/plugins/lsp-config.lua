@@ -18,7 +18,8 @@ return {
         "neovim/nvim-lspconfig",
         config = function()
             local lspconfig = require("lspconfig")
-            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+            -- local capabilities = require("cmp_nvim_lsp").default_capabilities() -- NOTE: This is required for cmp, but I am migrating to blink
+            local capabilities = require("blink.cmp").get_lsp_capabilities()
 
             -- NOTE: Have to setup all lsps
             lspconfig.lua_ls.setup({
@@ -111,10 +112,6 @@ return {
                 diagnostic_signs[vim.diagnostic.severity[type]] = icon
             end
             vim.diagnostic.config({ signs = { text = diagnostic_signs } })
-
-            -- TODO: Uncomment this when cmp is installed
-            -- local capabilities = vim.lsp.protocol.make_client_capabilities()
-            -- capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
         end,
     },
 }

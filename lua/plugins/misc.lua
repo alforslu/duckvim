@@ -3,7 +3,7 @@ return {
         "tpope/vim-sleuth",
         config = function()
             vim.g.sleuth_default_width = 4
-        end
+        end,
     },
     { -- Adds git related signs to the gutter, as well as utilities for managing changes
         "lewis6991/gitsigns.nvim",
@@ -24,6 +24,12 @@ return {
         opts = {
             signs = false,
         },
+    },
+    {
+        "folke/ts-comments.nvim",
+        opts = {},
+        event = "VeryLazy",
+        enabled = vim.fn.has("nvim-0.10.0") == 1,
     },
     {
         "MysticalDevil/inlay-hints.nvim",

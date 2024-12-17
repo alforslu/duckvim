@@ -2,6 +2,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.g.have_nerd_font = true
+vim.opt.termguicolors = true
 
 -- Remap C-c to Esc
 vim.keymap.set({ "n", "i", "v" }, "<C-c>", "<Esc>", { noremap = true, silent = true })
@@ -78,28 +79,3 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.inccommand = "split"
 
 -- lsp float borders
--- local _border = "rounded"
-vim.api.nvim_set_hl(0, "CustomFloatBorder", { fg = "#5ef1ff", bg = "NONE" })
-local _border = {
-    { "╭", "CustomFloatBorder" },
-    { "─", "CustomFloatBorder" },
-    { "╮", "CustomFloatBorder" },
-    { "│", "CustomFloatBorder" },
-    { "╯", "CustomFloatBorder" },
-    { "─", "CustomFloatBorder" },
-    { "╰", "CustomFloatBorder" },
-    { "│", "CustomFloatBorder" },
-}
-
--- Apply custom borders to LSP hover
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = _border,
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = _border,
-})
-
-vim.diagnostic.config({
-    float = { border = _border },
-})
