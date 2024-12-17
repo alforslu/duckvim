@@ -19,3 +19,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank()
     end,
 })
+
+-- Debug buffer details
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--     callback = function()
+--         local bufname = vim.api.nvim_buf_get_name(0)
+--         local buftype = vim.bo.filetype
+--         print("Buffer Name:", bufname, "Filetype:", buftype)
+--     end,
+-- })

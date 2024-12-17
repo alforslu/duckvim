@@ -23,6 +23,23 @@ return {
             require("luasnip.loaders.from_vscode").lazy_load()
 
             cmp.setup({
+                enabled = function()
+                    local context = require("cmp.config.context")
+                    -- Disable in comments
+                    if vim.api.nvim_get_mode().mode == "c" then
+                        return false
+                    end
+                    -- local buftype = vim.bo.filetype
+                    local bufname = vim.api.nvim_buf_get_name(0)
+                    if bufname == "neo-tree" then
+                        return false
+                    end
+                    return not context.in_treesitter_capture("comment")
+                        and not context.in_syntax_group("Comment")
+                        and not context.in_treesitter_capture("string")
+                        and not context.in_syntax_group("String")
+                end,
+
                 snippet = {
                     -- REQUIRED - you must specify a snippet engine
                     expand = function(args)
