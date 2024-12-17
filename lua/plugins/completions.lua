@@ -17,7 +17,11 @@ return {
         dependencies = "rafamadriz/friendly-snippets",
 
         -- use a release tag to download pre-built binaries
-        version = "v0.*",
+        -- version = "v0.*",
+        build = 'cargo build --release',
+
+      ---@module 'blink.cmp'
+      ---@type blink.cmp.Config
         opts = {
             -- 'default' for mappings similar to built-in completion
             -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
