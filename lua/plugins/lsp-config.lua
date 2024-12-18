@@ -10,7 +10,8 @@ return {
         config = function()
             require("mason-lspconfig").setup({
                 -- NOTE: Language servers
-                ensure_installed = { "lua_ls", "clangd", "rust_analyzer" },
+                -- ensure_installed = { "lua_ls", "clangd", "rust_analyzer" },
+                ensure_installed = {}, -- Auto is enabled
             })
         end,
     },
@@ -19,17 +20,16 @@ return {
         config = function()
             local lspconfig = require("lspconfig")
             -- local capabilities = require("cmp_nvim_lsp").default_capabilities() -- NOTE: This is required for cmp, but I am migrating to blink
-            local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-            -- NOTE: Have to setup all lsps
-            lspconfig.lua_ls.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.clangd.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.rust_analyzer.setup({
-                capabilities = capabilities,
+            -- Automatically set up capabilities
+            local capabilities = require("blink.cmp").get_lsp_capabilities()
+            local mason_lspconfig = require("mason-lspconfig")
+            mason_lspconfig.setup_handlers({
+                function(server_name)
+                    lspconfig[server_name].setup({
+                        capabilities = capabilities
+                    })
+                end
             })
 
             -- We just want to do this if LSP is enabled for the file

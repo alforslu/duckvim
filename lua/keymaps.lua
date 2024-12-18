@@ -16,6 +16,3 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 vim.keymap.set("n", "|", ":vsplit<CR>", { noremap = true, silent = true, desc = "Create vertical split" })
 vim.keymap.set("n", "-", ":split<CR>", { noremap = true, silent = true, desc = "Create horizontal split" })
 
--- Delete current buffer
-vim.keymap.set("n", "<Leader>bd", ":bd<CR>", { noremap = true, silent = true, desc = "Current [B]uffer [D]elete" })
-

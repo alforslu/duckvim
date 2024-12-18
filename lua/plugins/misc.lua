@@ -34,6 +34,15 @@ return {
         opts = {}, -- calls require('cord').setup()
     },
     {
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        opts = {
+            bigfile = { enabled = true },
+            quickfile = { enabled = true },
+        },
+    },
+    {
         "mrjones2014/smart-splits.nvim",
         build = "./kitty/install-kittens.bash",
         config = function()
