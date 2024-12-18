@@ -5,18 +5,6 @@ return {
             vim.g.sleuth_default_width = 4
         end,
     },
-    { -- Adds git related signs to the gutter, as well as utilities for managing changes
-        "lewis6991/gitsigns.nvim",
-        opts = {
-            signs = {
-                add = { text = "+" },
-                change = { text = "~" },
-                delete = { text = "_" },
-                topdelete = { text = "‾" },
-                changedelete = { text = "~" },
-            },
-        },
-    },
     {
         "folke/todo-comments.nvim",
         event = "VimEnter",
@@ -38,6 +26,12 @@ return {
         config = function()
             require("inlay-hints").setup()
         end,
+    },
+    {
+        "vyfor/cord.nvim",
+        build = "./build || .\\build",
+        event = "VeryLazy",
+        opts = {}, -- calls require('cord').setup()
     },
     {
         "mrjones2014/smart-splits.nvim",
