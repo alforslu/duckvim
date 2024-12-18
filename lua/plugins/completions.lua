@@ -18,10 +18,10 @@ return {
 
         -- use a release tag to download pre-built binaries
         -- version = "v0.*",
-        build = 'cargo build --release',
+        build = "cargo build --release",
 
-      ---@module 'blink.cmp'
-      ---@type blink.cmp.Config
+        ---@module 'blink.cmp'
+        ---@type blink.cmp.Config
         opts = {
             -- 'default' for mappings similar to built-in completion
             -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
@@ -29,8 +29,8 @@ return {
             -- see the "default configuration" section below for full documentation on how to define
             -- your own keymap.
             keymap = {
-                accept = { "<C-y>" },
-                select_next = { "<C-n>" },
+                -- accept = { "<C-y>" },
+                -- select_next = { "<C-n>" },
             },
             completion = {
                 menu = {
@@ -48,24 +48,29 @@ return {
                     },
                 },
 
-                appearance = {
-                    -- Sets the fallback highlight groups to nvim-cmp's highlight groups
-                    -- Useful for when your theme doesn't support blink.cmp
-                    use_nvim_cmp_as_default = true,
-                    nerd_font_variant = "mono",
-                },
-
                 -- default list of enabled providers defined so that you can extend it
                 -- elsewhere in your config, without redefining it, via `opts_extend`
-                sources = {
-                    default = { "lsp", "path", "snippets", "buffer", "lazydev" },
-                    -- optionally disable cmdline completions
-                    -- cmdline = {},
-                },
 
                 -- experimental signature help support
                 -- signature = { enabled = true }
             },
+            sources = {
+                providers = {
+                  buffer = { fallbacks = { "lazydev" } },
+                  lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
+                },
+                default = { "lsp", "path", "snippets", "buffer", "lazydev" },
+                -- optionally disable cmdline completions
+                -- cmdline = {},
+            },
+            appearance = {
+                -- Sets the fallback highlight groups to nvim-cmp's highlight groups
+                -- Useful for when your theme doesn't support blink.cmp
+                use_nvim_cmp_as_default = true,
+                nerd_font_variant = "mono",
+            },
+
+
             -- allows extending the providers array elsewhere in your config
             -- without having to redefine it
             -- opts_extend = { "sources.default" },
