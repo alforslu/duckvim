@@ -24,6 +24,7 @@ return {
         -- Set menu
         dashboard.section.buttons.val = {
             dashboard.button("f", "󰱽  Find files", ":cd $HOME/Projects <CR> | :Telescope find_files<CR>"),
+            dashboard.button("n", "  New file" , ":ene <BAR> startinsert <CR>"),
             dashboard.button("r", "󰄉  Recent files", ":Telescope oldfiles <CR>"),
             dashboard.button("u", "󱐥  Update plugins", "<cmd>Lazy update<CR>"),
             dashboard.button("s", "  Settings", ":cd $HOME/.config/nvim/ | :e $MYVIMRC | :Neotree<CR>"),
