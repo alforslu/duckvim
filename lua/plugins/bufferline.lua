@@ -13,6 +13,7 @@ return {
         { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
         { "[B", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer prev" },
         { "]B", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer next" },
+        { "<leader>bd", "<cmd>lua Snacks.bufdelete()<cr>"}
     },
     config = function()
         local bufferline = require("bufferline")
