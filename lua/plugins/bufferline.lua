@@ -2,6 +2,7 @@ return {
     "akinsho/bufferline.nvim",
     version = "*",
     dependencies = "nvim-tree/nvim-web-devicons",
+    lazy = false,
     keys = {
         { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin" },
         { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete Non-Pinned Buffers" },
@@ -13,7 +14,7 @@ return {
         { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
         { "[B", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer prev" },
         { "]B", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer next" },
-        { "<leader>bd", "<cmd>lua Snacks.bufdelete()<cr>"}
+        { "<leader>bd", "<cmd>lua Snacks.bufdelete()<cr>", desc = "Delete current buffer"}
     },
     config = function()
         local bufferline = require("bufferline")
