@@ -1,2 +1,3 @@
 TODO:
-Tab underline
+Good looking bufferline
+Decide on hotkeys for harpoon next & prev
