@@ -14,7 +14,7 @@ return {
         { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
         { "[B", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer prev" },
         { "]B", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer next" },
-        { "<leader>bd", "<cmd>lua Snacks.bufdelete()<cr>", desc = "Delete current buffer"}
+        { "<leader>bd", "<cmd>lua Snacks.bufdelete()<cr>", desc = "Delete current buffer" },
     },
     config = function()
         local bufferline = require("bufferline")
@@ -27,13 +27,12 @@ return {
                     Snacks.bufdelete(n)
                 end,
 
+                -- Themeing
                 always_show_bufferline = false,
-                -- mode = "tabs",
-                numbers = "buffer_id",
+                separator_style = "thin",
+
+                -- numbers = "buffer_id",
                 diagnostics = "nvim_lsp",
-                indicator = {
-                    style = "underline",
-                },
                 offsets = {
                     {
                         filetype = "neo-tree",
@@ -42,11 +41,15 @@ return {
                         separator = true,
                     },
                 },
+                indicator = {
+                    style="underline",
+                },
                 diagnostics_indicator = function(count, level)
                     local icon = level:match("error") and " " or " "
                     return " " .. icon .. count
                 end,
             },
+            highlights = {},
         })
     end,
 }
