@@ -11,6 +11,7 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "gl", vim.diagnostic.open_float, { noremap = true, silent = true, desc = "Show line diagnostics" })
 
 -- Create splits
 vim.keymap.set("n", "|", ":vsplit<CR>", { noremap = true, silent = true, desc = "Create vertical split" })
