@@ -29,11 +29,20 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end,
 })
 
+-- Clipboard (only runs if copyq is installed)
+
+-- if vim.fn.executable("copyq") == 1 then
+--     vim.g.clipboard = {
+--         name = "copyq",
+--         cache_enabled = 1,
+--     }
+-- end
+
 -- Line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = false -- Might automate this later idk
-vim.opt.scrolloff = 10     -- Amount of lines minimum at bottom or top
+vim.opt.scrolloff = 10 -- Amount of lines minimum at bottom or top
 
 -- Hide duplicate mode text
 vim.opt.showmode = false
@@ -77,4 +86,3 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Live changes in replace and such
 vim.opt.inccommand = "split"
-
