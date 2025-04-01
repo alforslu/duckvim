@@ -6,6 +6,7 @@
   "cyberdream.nvim": { "branch": "main", "commit": "f36d7991b6373ebda9cfca20030aa1fca7328ea8" },
   "fidget.nvim": { "branch": "main", "commit": "d9ba6b7bfe29b3119a610892af67602641da778e" },
   "friendly-snippets": { "branch": "main", "commit": "efff286dd74c22f731cdec26a70b46e5b203c619" },
+  "gitignore.nvim": { "branch": "master", "commit": "47cefc0b6ea412e1e149552b10ebfe9f7f0b8952" },
   "gitsigns.nvim": { "branch": "main", "commit": "3c76f7fabac723aa682365ef782f88a83ccdb4ac" },
   "harpoon": { "branch": "harpoon2", "commit": "ed1f853847ffd04b2b61c314865665e1dadf22c7" },
   "inlay-hints.nvim": { "branch": "master", "commit": "3259b54f3b954b4d8260f3ee49ceabe978ea5636" },
