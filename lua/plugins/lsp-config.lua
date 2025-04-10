@@ -19,17 +19,32 @@ return {
         "neovim/nvim-lspconfig",
         config = function()
             local lspconfig = require("lspconfig")
-            -- local capabilities = require("cmp_nvim_lsp").default_capabilities() -- NOTE: This is required for cmp, but I am migrating to blink
 
             -- Automatically set up capabilities
             local capabilities = require("blink.cmp").get_lsp_capabilities()
             local mason_lspconfig = require("mason-lspconfig")
             mason_lspconfig.setup_handlers({
                 function(server_name)
-                    lspconfig[server_name].setup({
-                        capabilities = capabilities
-                    })
-                end
+                    -- Ugly but whatever
+                    if server_name == "pylsp" then
+                        lspconfig[server_name].setup({
+                            capabilities = capabilities,
+                            settings = {
+                                pylsp = {
+                                    plugins = {
+                                        autopep8 = { enabled = false },
+                                        yapf = { enabled = false },
+                                    },
+                                },
+                            },
+                        })
+                    else
+                        -- Catchall for the rest
+                        lspconfig[server_name].setup({
+                            capabilities = capabilities,
+                        })
+                    end
+                end,
             })
 
             -- We just want to do this if LSP is enabled for the file
