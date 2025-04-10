@@ -11,7 +11,20 @@ return {
             require("mason-lspconfig").setup({
                 -- NOTE: Language servers
                 -- ensure_installed = { "lua_ls", "clangd", "rust_analyzer" },
-                ensure_installed = {}, -- Auto is enabled
+                ensure_installed = {
+                    "clangd",
+                    "lua_ls",
+                    "html",
+                    "cssls",
+                    "ts_ls",
+                    "tailwindcss",
+                    "pylsp",
+                    "black",
+                    "flake8",
+                    "isort",
+                    "prettierd",
+                    "pyright",
+                }, -- Auto is enabled
             })
         end,
     },
