@@ -10,7 +10,6 @@ return {
         config = function()
             require("mason-lspconfig").setup({
                 -- NOTE: Language servers
-                -- ensure_installed = { "lua_ls", "clangd", "rust_analyzer" },
                 ensure_installed = {
                     "clangd",
                     "lua_ls",
@@ -19,10 +18,6 @@ return {
                     "ts_ls",
                     "tailwindcss",
                     "pylsp",
-                    "black",
-                    "flake8",
-                    "isort",
-                    "prettierd",
                     "pyright",
                 }, -- Auto is enabled
             })
@@ -47,6 +42,23 @@ return {
                                     plugins = {
                                         autopep8 = { enabled = false },
                                         yapf = { enabled = false },
+                                    },
+                                },
+                            },
+                        })
+                    elseif server_name == "html" then
+                        lspconfig[server_name].setup({
+                            filetypes = { "html", "htmldjango", "jinja" },
+                            settings = {
+                                html = {
+                                    format = {
+                                        templating = true,
+                                        wrapLineLength = 120,
+                                        wrapAttributes = "auto",
+                                    },
+                                    hover = {
+                                        documentation = true,
+                                        references = true,
                                     },
                                 },
                             },
