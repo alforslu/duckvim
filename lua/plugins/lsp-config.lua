@@ -6,7 +6,7 @@ return {
         end,
     },
     {
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
                 -- NOTE: Language servers
@@ -29,48 +29,8 @@ return {
             local lspconfig = require("lspconfig")
 
             -- Automatically set up capabilities
-            local capabilities = require("blink.cmp").get_lsp_capabilities()
-            local mason_lspconfig = require("mason-lspconfig")
-            mason_lspconfig.setup_handlers({
-                function(server_name)
-                    -- Ugly but whatever
-                    if server_name == "pylsp" then
-                        lspconfig[server_name].setup({
-                            capabilities = capabilities,
-                            settings = {
-                                pylsp = {
-                                    plugins = {
-                                        autopep8 = { enabled = false },
-                                        yapf = { enabled = false },
-                                    },
-                                },
-                            },
-                        })
-                    elseif server_name == "html" then
-                        lspconfig[server_name].setup({
-                            filetypes = { "html", "htmldjango", "jinja" },
-                            settings = {
-                                html = {
-                                    format = {
-                                        templating = true,
-                                        wrapLineLength = 120,
-                                        wrapAttributes = "auto",
-                                    },
-                                    hover = {
-                                        documentation = true,
-                                        references = true,
-                                    },
-                                },
-                            },
-                        })
-                    else
-                        -- Catchall for the rest
-                        lspconfig[server_name].setup({
-                            capabilities = capabilities,
-                        })
-                    end
-                end,
-            })
+            -- local capabilities = require("blink.cmp").get_lsp_capabilities()
+            vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities() })
 
             -- We just want to do this if LSP is enabled for the file
             vim.api.nvim_create_autocmd("LspAttach", {
