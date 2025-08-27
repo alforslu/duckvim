@@ -57,10 +57,25 @@ return {
                 w.centered_float(w.scopes)
             end, { desc = "[D]ebug [S]copes" })
 
+            local function find_lldb_dap()
+                local candidates = {
+                    "/usr/bin/lldb-dap",        -- Xcode CLT/macOS
+                    vim.fn.expand("~/Downloads/lldb-dap/llvm-project/build/bin/lldb-dap"),
+                    vim.fn.exepath("lldb-dap"), -- from $PATH (if any)
+                }
+                for _, p in ipairs(candidates) do
+                    if p and #p > 0 and (vim.fn.executable(p) == 1 or vim.loop.fs_stat(p)) then
+                        return p
+                    end
+                end
+                return nil
+            end
+
             -- C/C++/RUST
+            local cmd = find_lldb_dap()
             dap.adapters.lldb = {
                 type = "executable",
-                command = "/usr/bin/lldb-dap",
+                command = cmd,
                 name = "lldb",
             }
 
