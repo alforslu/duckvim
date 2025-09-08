@@ -18,7 +18,7 @@ return {
                     "ts_ls",
                     "tailwindcss",
                     "pylsp",
-                    "pyright",
+                    -- "pyright",
                 }, -- Auto is enabled
             })
         end,

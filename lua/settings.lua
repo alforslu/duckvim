@@ -38,6 +38,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
 --     }
 -- end
 
+-- LSP Blame
+vim.diagnostic.config({
+  virtual_text = { source = true },
+  float = { source = true },
+})
+
 -- Line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
