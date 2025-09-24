@@ -1,7 +1,8 @@
 return {
     {
         "nvim-telescope/telescope.nvim",
-        tag = "0.1.8",
+        -- tag = "0.1.8",
+        version = false,
         dependencies = {
             "nvim-lua/plenary.nvim",
             {
