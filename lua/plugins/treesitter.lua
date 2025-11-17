@@ -36,6 +36,7 @@ return {
             "sql",
             "csv",
             "zsh",
+            "hyprlang",
             "dockerfile",
             "ini",
             "lua",
