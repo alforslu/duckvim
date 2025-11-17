@@ -5,6 +5,8 @@ return {
     branch = "main",
     config = function()
         require("nvim-treesitter").install({
+
+            -- Systems / low-level / compiled
             "c",
             "cpp",
             "rust",
@@ -12,39 +14,56 @@ return {
             "nasm",
             "asm",
             "cuda",
+
+            -- Graphics / shader languages
             "glsl",
             "wgsl",
             "hlsl",
-            "slang",
-            "python",
+
+            -- Scripting / automation / shell
             "bash",
+            "zsh",
+            "fish",
+            "python",
+            "perl",
+
+            -- Build systems
             "cmake",
             "make",
             "ninja",
-            "perl",
+
+            -- Web / frontend
             "javascript",
             "typescript",
             "html",
             "css",
+
+            -- Config / data formats
             "json",
-            "kitty",
             "jsonc",
-            "latex",
             "yaml",
             "toml",
-            "fish",
-            "sql",
+            "ini",
             "csv",
-            "zsh",
+
+            -- Terminals / desktop configs
+            "kitty",
             "hyprlang",
             "dockerfile",
-            "ini",
+
+            -- Query / databases
+            "sql",
+
+            -- LaTeX / Markdown / docs
+            "latex",
+            "markdown",
+            "markdown_inline",
+
+            -- Neovim / Lua ecosystem
             "lua",
             "vim",
             "vimdoc",
             "query",
-            "markdown",
-            "markdown_inline",
         })
         -- local config = require("nvim-treesitter.configs")
         -- config.setup({
