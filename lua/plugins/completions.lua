@@ -31,8 +31,6 @@ return {
             keymap = {
                 ["<Up>"] = false,
                 ["<Down>"] = false,
-                ["<C-Up>"] = "select_prev",
-                ["<C-Down>"] = "select_next",
                 -- accept = { "<C-y>" },
                 -- select_next = { "<C-n>" },
             },
