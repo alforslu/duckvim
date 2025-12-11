@@ -29,19 +29,23 @@ return {
             -- see the "default configuration" section below for full documentation on how to define
             -- your own keymap.
             keymap = {
+                ["<Up>"] = false,
+                ["<Down>"] = false,
+                ["<C-Up>"] = "select_prev",
+                ["<C-Down>"] = "select_next",
                 -- accept = { "<C-y>" },
                 -- select_next = { "<C-n>" },
             },
             completion = {
                 menu = {
                     border = "rounded", -- Add rounded borders to the completion menu
-                    auto_show = true,   -- Ensure the menu auto-shows
+                    auto_show = true, -- Ensure the menu auto-shows
                 },
                 documentation = {
-                    auto_show = true,       -- Automatically show documentation
+                    auto_show = true, -- Automatically show documentation
                     window = {
                         border = "rounded", -- Add borders to the documentation window
-                        winblend = 0,       -- Transparency of the window
+                        winblend = 0, -- Transparency of the window
                         max_width = 60,
                         max_height = 20,
                         winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder",
@@ -56,8 +60,8 @@ return {
             },
             sources = {
                 providers = {
-                  buffer = { fallbacks = { "lazydev" } },
-                  lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
+                    buffer = { fallbacks = { "lazydev" } },
+                    lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
                 },
                 default = { "lsp", "path", "snippets", "buffer", "lazydev" },
                 -- optionally disable cmdline completions
@@ -69,7 +73,6 @@ return {
                 use_nvim_cmp_as_default = true,
                 nerd_font_variant = "mono",
             },
-
 
             -- allows extending the providers array elsewhere in your config
             -- without having to redefine it
