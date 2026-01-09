@@ -17,3 +17,6 @@ vim.keymap.set("n", "gl", vim.diagnostic.open_float, { noremap = true, silent = 
 vim.keymap.set("n", "|", ":vsplit<CR>", { noremap = true, silent = true, desc = "Create vertical split" })
 vim.keymap.set("n", "-", ":split<CR>", { noremap = true, silent = true, desc = "Create horizontal split" })
 
+-- Tab between buffers
+vim.keymap.set("n", "<Tab>", ":bnext<CR>", { noremap = true, silent = true, desc = "Go to next buffer" })
+vim.keymap.set("n", "<S-Tab>", ":bprev<CR>", { noremap = true, silent = true, desc = "Go to next buffer" })
