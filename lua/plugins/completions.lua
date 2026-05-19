@@ -14,11 +14,13 @@ return {
         "saghen/blink.cmp",
         lazy = false, -- lazy loading handled internally
         -- optional: provides snippets for the snippet source
-        dependencies = "rafamadriz/friendly-snippets",
+        dependencies = { "rafamadriz/friendly-snippets", "saghen/blink.lib" },
 
         -- use a release tag to download pre-built binaries
         -- version = "v0.*",
-        build = "cargo build --release",
+        build = function()
+            require("blink.cmp").build():wait(60000)
+        end,
 
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config

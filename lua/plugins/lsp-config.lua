@@ -15,8 +15,10 @@ return {
                     "lua_ls",
                     "html",
                     "cssls",
-                    "ts_ls",
+                    "eslint",
+                    -- "ts_ls",
                     "tailwindcss",
+                    -- "basedpyright",
                     -- "pylsp",
                     "pyright",
                 }, -- Auto is enabled
@@ -26,8 +28,6 @@ return {
     {
         "neovim/nvim-lspconfig",
         config = function()
-            local lspconfig = require("lspconfig")
-
             -- Automatically set up capabilities
             -- local capabilities = require("blink.cmp").get_lsp_capabilities()
             vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities() })
@@ -65,7 +65,7 @@ return {
                     -- word under your cursor when your cursor rests there for a little while.
                     -- When you move your cursor, the highlights will be cleared (the second autocommand).
                     local client = vim.lsp.get_client_by_id(event.data.client_id)
-                    if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+                    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
                         -- TODO: Don't know if I like this, maybe remove?
                         local highlight_augroup =
                             vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
@@ -92,7 +92,7 @@ return {
 
                     -- The following code creates a keymap to toggle inlay hints in your
                     -- code, if the language server you are using supports them
-                    if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+                    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
                         map("<leader>th", function()
                             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
                             if vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }) then
