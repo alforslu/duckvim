@@ -17,9 +17,13 @@ return {
         dependencies = { "rafamadriz/friendly-snippets", "saghen/blink.lib" },
 
         -- use a release tag to download pre-built binaries
-        -- version = "v0.*",
+        -- version = "*",
+        -- build = function()
+        --     require("blink.cmp").build():wait(60000)
+        -- end,
+        --
         build = function()
-            require("blink.cmp").build():wait(60000)
+            require("blink.cmp").build():pwait()
         end,
 
         ---@module 'blink.cmp'
