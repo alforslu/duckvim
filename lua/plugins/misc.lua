@@ -31,7 +31,12 @@ return {
         "vyfor/cord.nvim",
         build = "./build || .\\build",
         event = "VeryLazy",
-        opts = {}, -- calls require('cord').setup()
+        opts = {
+            text = {
+                viewing = "Viewing a file",
+                editing = "Editing a file",
+            },
+        }, -- calls require('cord').setup()
     },
     {
         "folke/snacks.nvim",
