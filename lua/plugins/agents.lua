@@ -5,7 +5,6 @@ return {
     opts = {
         -- Any ACP-compatible provider works. Built-in: "claude-agent-acp" | "gemini-acp" | "codex-acp" | "opencode-acp" | "cursor-acp" | "copilot-acp" | "auggie-acp" | "mistral-vibe-acp" | "cline-acp" | "goose-acp" | "kiro-acp" | "pi-acp"
         provider = "codex-acp", -- setting the name here is all you need to get started
-        },
     },
 
     -- these are just suggested keymaps; customize as desired
@@ -31,7 +30,7 @@ return {
             function()
                 require("agentic").new_session()
             end,
-            mode = { "n", "v" },
+            mode = { "n", "v"},
             desc = "New Agentic Session",
         },
         {
