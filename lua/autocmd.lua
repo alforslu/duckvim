@@ -20,3 +20,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
 })
 
+-- MD in Agent
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "AgenticChat",
+    callback = function(event)
+        vim.treesitter.start(event.buf, "markdown")
+    end,
+})
