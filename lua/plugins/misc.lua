@@ -20,14 +20,6 @@ return {
         enabled = vim.fn.has("nvim-0.10.0") == 1,
     },
     {
-        "MysticalDevil/inlay-hints.nvim",
-        event = "LspAttach",
-        dependencies = { "neovim/nvim-lspconfig" },
-        config = function()
-            require("inlay-hints").setup()
-        end,
-    },
-    {
         "vyfor/cord.nvim",
         build = "./build || .\\build",
         event = "VeryLazy",
