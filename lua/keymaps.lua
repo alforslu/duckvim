@@ -27,3 +27,31 @@ vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { silent = true, desc = "Move line 
 
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move line down" })
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move line up" })
+
+-- Formatting, tries null-ls else fallback
+vim.keymap.set("n", "<C-f>", function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local clients = vim.lsp.get_clients({
+        bufnr = bufnr,
+        method = "textDocument/formatting",
+    })
+
+    local formatter = clients[1]
+    for _, client in ipairs(clients) do
+        if client.name == "null-ls" then
+            formatter = client
+            break
+        end
+    end
+
+    if not formatter then
+        vim.notify("No formatter available for this buffer", vim.log.levels.WARN)
+        return
+    end
+
+    vim.lsp.buf.format({
+        bufnr = bufnr,
+        id = formatter.id,
+        async = true,
+    })
+end, { desc = "Format file" })

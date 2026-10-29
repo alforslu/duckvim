@@ -49,9 +49,10 @@ return {
                     map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
                     map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
                     map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
-                    vim.keymap.set("n", "<C-f>", function()
-                        vim.lsp.buf.format({ async = true })
-                    end, { desc = "Format file" })
+                    -- MOVED TO AVOID DOUBLE WORK, see keymaps.lua
+                    -- vim.keymap.set("n", "<C-f>", function()
+                    --     vim.lsp.buf.format({ async = true })
+                    -- end, { desc = "Format file" })
 
                     -- Fuzzy find all the symbols in your current workspace.
                     --  Similar to document symbols, except searches over your entire project.
