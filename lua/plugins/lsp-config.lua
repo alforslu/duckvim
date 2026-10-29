@@ -66,27 +66,43 @@ return {
                     -- word under your cursor when your cursor rests there for a little while.
                     -- When you move your cursor, the highlights will be cleared (the second autocommand).
                     local client = vim.lsp.get_client_by_id(event.data.client_id)
-                    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-                        -- TODO: Don't know if I like this, maybe remove?
-                        local highlight_augroup =
-                            vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+                    if client and client:supports_method("textDocument/documentHighlight", event.buf) then
+                        local group = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+
+                        vim.api.nvim_clear_autocmds({ group = group, buffer = event.buf })
+
                         vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+                            group = group,
                             buffer = event.buf,
-                            group = highlight_augroup,
                             callback = vim.lsp.buf.document_highlight,
                         })
 
                         vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+                            group = group,
                             buffer = event.buf,
-                            group = highlight_augroup,
                             callback = vim.lsp.buf.clear_references,
                         })
 
                         vim.api.nvim_create_autocmd("LspDetach", {
-                            group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
-                            callback = function(event2)
-                                vim.lsp.buf.clear_references()
-                                vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
+                            group = group,
+                            buffer = event.buf,
+                            callback = function(detach)
+                                for _, remaining in
+                                ipairs(vim.lsp.get_clients({
+                                    bufnr = detach.buf,
+                                    method = "textDocument/documentHighlight",
+                                }))
+                                do
+                                    if remaining.id ~= detach.data.client_id then
+                                        return
+                                    end
+                                end
+
+                                vim.lsp.util.buf_clear_references(detach.buf)
+                                vim.api.nvim_clear_autocmds({
+                                    group = group,
+                                    buffer = detach.buf,
+                                })
                             end,
                         })
                     end
