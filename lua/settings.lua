@@ -38,17 +38,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
 --     }
 -- end
 
--- LSP Blame
-vim.diagnostic.config({
-  virtual_text = { source = true },
-  float = { source = true },
-})
-
 -- Line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = false -- Might automate this later idk
-vim.opt.scrolloff = 10 -- Amount of lines minimum at bottom or top
+vim.opt.scrolloff = 10     -- Amount of lines minimum at bottom or top
 
 -- Hide duplicate mode text
 vim.opt.showmode = false
@@ -93,11 +87,14 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 -- Live changes in replace and such
 vim.opt.inccommand = "split"
 
+-- LSP Blame + inline
 vim.diagnostic.config({
     virtual_text = {
+        source = true,
         prefix = ">>",
         spacing = 4,
     },
+    float = { source = true },
     signs = true,
     underline = true,
     update_in_insert = false,
