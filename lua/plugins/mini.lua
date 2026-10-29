@@ -26,11 +26,11 @@ return {
         -- Paired brackets
         require("mini.pairs").setup({
             modes = { insert = true, command = true, terminal = false },
-
-            skip_next = [=[[%w%%%'%[%"%.%`%$]]=], -- Yoinked from lazyvim
-            skip_ts = { "string" },
-            skip_unbalanced = true,
-            markdown = true,
+            mappings = {
+                ["("] = { neigh_pattern = "^[^\\][^%w]" },
+                ["["] = { neigh_pattern = "^[^\\][^%w]" },
+                ["{"] = { neigh_pattern = "^[^\\][^%w]" },
+            },
         })
     end,
 }
